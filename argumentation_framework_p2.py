@@ -27,7 +27,7 @@ def plot_execution_times(execution_times):
     plt.tight_layout()
     for i in range(idx + 1, 4):
         fig.delaxes(axes[i])
-
+    plt.savefig("execution_times.png")
     plt.show()
 
 
@@ -200,7 +200,7 @@ if __name__ == '__main__':
     #     print(f"{filename}: {time} seconds")
 
     data_files = {
-        "example-input-format_original.json": ['a'], 
+        "example-input-format_original.json": ['2'], 
         "example-input-format-1.json": ['a', 'k'], 
         "example-input-format-2.json": ['c', 'd', 'a'], 
         "example-input-format-3.json": ['b', 'd', 'e']
