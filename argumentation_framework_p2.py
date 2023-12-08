@@ -6,12 +6,10 @@ import matplotlib.pyplot as plt
 
 
 def plot_execution_times(execution_times):
-    # Create a 2x2 subplot grid
     fig, axes = plt.subplots(2, 2, figsize=(12, 8))
 
     axes = axes.flatten()
 
-    # Iterate over each file and its execution times
     for idx, (filename, times) in enumerate(execution_times.items()):
         if idx < len(axes):
             arguments = list(times.keys())
@@ -184,21 +182,6 @@ def main(filename, argument):
 
 
 if __name__ == '__main__':
-    # data_files = {"example-input-format_original.json" : ['a'], "example-input-format-1.json": ['a','k'], 
-    #          "example-input-format-2.json": ['c','d','a'], "example-input-format-3.json": ['b','d','e']}
-
-    # execution_times = {}
-
-    # for filename in data_files:
-    #     for argument in data_files[filename]:
-    #         execution_time = main(filename, argument)
-    #         execution_times[filename] = execution_time
-    #         print(f"Execution time for {filename}: {execution_time} seconds")
-
-    # print("\nAll Execution Times:")
-    # for filename, time in execution_times.items():
-    #     print(f"{filename}: {time} seconds")
-
     data_files = {
         "example-input-format_original.json": ['2'], 
         "example-input-format-1.json": ['a', 'k'], 
@@ -221,4 +204,3 @@ if __name__ == '__main__':
             print(f"{filename} with argument '{argument}': {time} seconds")
 
     plot_execution_times(execution_times)
-
