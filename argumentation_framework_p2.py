@@ -19,6 +19,7 @@ def plot_execution_times(execution_times):
             axes[idx].set_title(f'Execution Times for {filename}')
             axes[idx].set_ylabel('Time (seconds)')
             axes[idx].set_xlabel('Arguments')
+            axes[idx].set_ylim(0, 0.0006)
         else:
             break
 
