@@ -2,10 +2,11 @@ import json
 import random
 import timeit
 import time
+import sys
 import matplotlib.pyplot as plt
 
 
-def plot_execution_times(execution_times):
+"""def plot_execution_times(execution_times):
     fig, axes = plt.subplots(2, 2, figsize=(12, 8))
 
     axes = axes.flatten()
@@ -27,7 +28,7 @@ def plot_execution_times(execution_times):
     for i in range(idx + 1, 4):
         fig.delaxes(axes[i])
     plt.savefig("execution_times.png")
-    plt.show()
+    plt.show()"""
 
 
 class ArgumentationFramework:
@@ -161,7 +162,6 @@ class ArgumentationFramework:
     
 
 def main(filename, argument):
-
     print(f"\nRunning for file: {filename} with argument: '{argument}'")
 
     start_time = time.time()
@@ -180,28 +180,21 @@ def main(filename, argument):
     end_time = time.time()
     return end_time - start_time  
 
-
-
 if __name__ == '__main__':
-    data_files = {
-        "example-input-format_original.json": ['2'], 
-        "example-input-format-1.json": ['a', 'k'], 
-        "example-input-format-2.json": ['c', 'd', 'a'], 
-        "example-input-format-3.json": ['b', 'd', 'e']
-    }
+    if len(sys.argv) != 3:
+        print("Usage: python script.py <json_file> <argument>")
+        sys.exit(1)
 
-    execution_times = {}
+    filename = sys.argv[1]
+    argument = sys.argv[2]
 
-    for filename in data_files:
-        execution_times[filename] = {}
-        for argument in data_files[filename]:
-            execution_time = main(filename, argument)
-            execution_times[filename][argument] = execution_time
-            print(f"Execution time for {filename} with argument '{argument}': {execution_time} seconds")
+    execution_times = {filename: {argument: main(filename, argument)}}
+
+    print(f"Execution time for {filename} with argument '{argument}': {execution_times[filename][argument]} seconds")
 
     print("\nAll Execution Times:")
     for filename, times in execution_times.items():
         for argument, time in times.items():
             print(f"{filename} with argument '{argument}': {time} seconds")
 
-    plot_execution_times(execution_times)
+    """plot_execution_times(execution_times)"""
